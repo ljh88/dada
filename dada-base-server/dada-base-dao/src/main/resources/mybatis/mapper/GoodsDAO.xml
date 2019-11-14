@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dada.base.dao.GoodsDao">
+  <resultMap id="BaseResultMap" type="com.dada.base.service.GoodsEntity">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="goods_sku" jdbcType="VARCHAR" property="goodsSku" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_price" jdbcType="BIGINT" property="goodsPrice" />
+    <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+    <result column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+    <result column="is_marketable" jdbcType="VARCHAR" property="isMarketable" />
+    <result column="created_date" jdbcType="TIMESTAMP" property="createdDate" />
+    <result column="modified_date" jdbcType="TIMESTAMP" property="modifiedDate" />
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, goods_sku, goods_name, goods_price, goods_num, seller_id, is_marketable, created_date, 
+    modified_date
+  </sql>
+
+  <insert id="insert" parameterType="com.dada.base.service.GoodsEntity">
+    insert into goods (id, goods_sku, goods_name,
+      goods_price, goods_num, seller_id,
+      is_marketable, created_date, modified_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{goodsSku,jdbcType=VARCHAR}, #{goodsName,jdbcType=VARCHAR},
+      #{goodsPrice,jdbcType=BIGINT}, #{goodsNum,jdbcType=INTEGER}, #{sellerId,jdbcType=VARCHAR},
+      #{isMarketable,jdbcType=VARCHAR}, now(), now()
+      )
+  </insert>
+
+  <update id="update" parameterType="com.dada.base.service.GoodsEntity">
+    update goods
+    <set>
+      <if test="goodsSku != null">
+        goods_sku = #{goodsSku,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsPrice != null">
+        goods_price = #{goodsPrice,jdbcType=BIGINT},
+      </if>
+      <if test="goodsNum != null">
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="sellerId != null">
+        seller_id = #{sellerId,jdbcType=VARCHAR},
+      </if>
+      <if test="isMarketable != null">
+        is_marketable = #{isMarketable,jdbcType=VARCHAR},
+      </if>
+      <if test="createdDate != null">
+        created_date = #{createdDate,jdbcType=TIMESTAMP},
+      </if>
+      modified_date =now()
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="selectBy" parameterType="com.dada.base.service.GoodsEntity" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from goods
+    <where>
+      <if test="id != null and id != ''">
+        id = #{id,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectEntity" parameterType="com.dada.base.service.GoodsEntity" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from goods
+    <where>
+      <if test="id != null and id != ''">
+        id = #{id,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

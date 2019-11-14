@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dada.base.dao.SellerDao">
+  <resultMap id="BaseResultMap" type="com.dada.base.service.SellerEntity">
+    <id column="seller_id" jdbcType="VARCHAR" property="sellerId" />
+    <result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="status" jdbcType="VARCHAR" property="status" />
+    <result column="address_detail" jdbcType="VARCHAR" property="addressDetail" />
+    <result column="logo_pic" jdbcType="VARCHAR" property="logoPic" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    seller_id, seller_name, `password`, email, mobile, `status`, address_detail, logo_pic
+  </sql>
+
+  <insert id="insert" parameterType="com.dada.base.service.SellerEntity">
+    insert into seller (seller_id, seller_name, `password`,
+      email, mobile, `status`,
+      address_detail, logo_pic)
+    values (#{sellerId,jdbcType=VARCHAR}, #{sellerName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+      #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR},
+      #{addressDetail,jdbcType=VARCHAR}, #{logoPic,jdbcType=VARCHAR})
+  </insert>
+
+  <update id="update" parameterType="com.dada.base.service.SellerEntity">
+    update seller
+    <set>
+      <if test="sellerName != null">
+        seller_name = #{sellerName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        `password` = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDetail != null">
+        address_detail = #{addressDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="logoPic != null">
+        logo_pic = #{logoPic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where seller_id = #{sellerId,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectBy" parameterType="com.dada.base.service.SellerEntity" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from seller
+    where seller_id = #{sellerId,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectEntity" parameterType="com.dada.base.service.SellerEntity" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from seller
+    <where>
+      <if test="id != null and id != ''">
+        id = #{id,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>
