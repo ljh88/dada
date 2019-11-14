@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+
+	<decorators>
+		<decorator name="main" page="/WEB-INF/jsp/frame.jsp">
+          <pattern>/**</pattern>
+      	</decorator>
+	</decorators>
+
+	<excludes>
+        <pattern>*.html</pattern>
+	</excludes>
+</sitemesh>
