@@ -27,7 +27,7 @@
 
         <!-- dubbo相关 -->
         <dubbo.version>2.5.3</dubbo.version>
-        <zookeeper.version>3.4.7</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
         <zkclient.version>0.1</zkclient.version>
 
         <!--mq相关-->
