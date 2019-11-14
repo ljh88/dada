@@ -56,7 +56,7 @@
         <junit.version>4.12</junit.version>
 
         <!-- Jackson Json处理工具包 -->
-        <jackson.version>2.4.2</jackson.version>
+        <jackson.version>2.9.10.1</jackson.version>
         <!-- 时间操作组件 -->
         <joda-time.version>2.5</joda-time.version>
         <!-- Apache工具组件 -->
