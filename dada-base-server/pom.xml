@@ -67,7 +67,7 @@
         <pagehelper.version>5.0.0</pagehelper.version>
         <fastjson.version>1.2.30</fastjson.version>
         <!-- 文件上传组件 -->
-        <commons-fileupload.version>1.3.1</commons-fileupload.version>
+        <commons-fileupload.version>1.3.3</commons-fileupload.version>
 
         <!-- JSP相关 -->
         <jstl.version>1.2</jstl.version>
