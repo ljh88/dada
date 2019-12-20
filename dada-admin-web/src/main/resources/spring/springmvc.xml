@@ -14,10 +14,10 @@
     <context:component-scan base-package="com.dada"/>
     <!--开启springMVC注解模式-->
     <mvc:annotation-driven/>
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
-    </bean>
+    </bean>-->
     <!-- 配置静态资源映射  -->
     <!-- 指定/WEB-INF/js   /WEB-INF/css/  下的所有的静态资源包括子目录下的静态资源  都不被拦截-->
     <!--  mapping=/js/**  :表示访问静态资源的路径的形式    可以访问 /js/下的静态资源或者所有的子目录下的静态资源-->
@@ -37,8 +37,13 @@
 
 
     <!-- 引用dubbo服务 -->
-    <dubbo:application name="dada-admin-web"/>
-    <dubbo:registry protocol="zookeeper" address="192.168.166.129:2181"/>
-    <dubbo:reference interface="com.dada.base.api.GoodsFacade" id="goodsFacadeImpl" timeout="300000"/>
+   <!-- <dubbo:application name="dada-admin-web"/>
+    <dubbo:registry protocol="zookeeper" address="192.168.166.129:2181"/>-->
+    <dubbo:reference interface="com.dada.base.api.GoodsFacade" id="goodsFacadeImpl" timeout="40000"/>
+    <dubbo:reference interface="com.dada.base.api.DemoFacade" id="demoFacadeImpl" timeout="40000"/>
+
+    <!--
+        <dubbo:reference interface="com.dada.base.api.StatisticsFacade" id="statisticsFacadeImpl" timeout="40000"/>
+    -->
 
 </beans>
