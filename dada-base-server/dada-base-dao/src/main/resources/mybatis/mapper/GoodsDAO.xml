@@ -79,4 +79,32 @@
       </if>
     </where>
   </select>
+  <select id="selectGoodsNameList" resultType="java.lang.String">
+    select distinct(goods_name) from goods
+  </select>
+  <select id="selectGoodsSkuList" resultType="java.lang.String">
+        select distinct(goods_sku) from goods
+  </select>
+
+  <select id="selectGoodsList" parameterType="com.dada.base.dto.GoodsDto" resultType="com.dada.base.dto.GoodsDto">
+    select
+    <include refid="Base_Column_List" />
+    from goods
+    <where>
+      <if test="id != null and id != ''">
+        id = #{id,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+
+  <select id="selectGoods" parameterType="com.dada.base.dto.GoodsDto" resultType="com.dada.base.dto.GoodsDto">
+    select
+    <include refid="Base_Column_List" />
+    from goods
+    <where>
+      <if test="id != null and id != ''">
+        id = #{id,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
 </mapper>

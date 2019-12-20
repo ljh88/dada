@@ -16,20 +16,20 @@ public class ApiConstants {
     /**
      * api接口请求成功
      */
-    public final static int API_SUCCESS = 0;
+    public final static String API_SUCCESS = "0";
     public final static String API_SUCCESS_MSG = "success";
 
     /**
      * api接口请求失败，客户端正常处理往下流程
      * 根据返回实体内的resCode走不同流程
      */
-    public final static int API_FAIL = 1;
+    public final static String API_FAIL = "1";
     public final static String API_FAIL_MSG = "fail";
 
     /**
      * 接口超时 客户端处理为弹框，文案内容为：连接超时，请稍后再试
      */
-    public final static int SYSTEM_ERROR = -1;
+    public final static String SYSTEM_ERROR = "-1";
     public final static String SYSTEM_ERROR_MSG = "系统异常";
 
     /**

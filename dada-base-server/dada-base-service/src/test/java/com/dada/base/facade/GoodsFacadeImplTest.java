@@ -5,7 +5,7 @@ import com.dada.base.common.DataResponse;
 import com.dada.base.common.MessageResponse;
 import com.dada.base.common.PageInfo;
 import com.dada.base.common.PageInfoResponse;
-import com.dada.base.service.BaseDaoTest;
+import com.dada.base.service.BaseTest;
 import com.dada.base.service.GoodsEntity;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author: lijinghua
  * @Date: 2019/9/16
  */
-public class GoodsFacadeImplTest extends BaseDaoTest {
+public class GoodsFacadeImplTest extends BaseTest {
 
     @Autowired
     private GoodsFacadeImpl goodsFacade;

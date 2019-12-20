@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.dada.base.dao.GoodsDao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.github.pagehelper.PageHelper.*;
@@ -57,7 +58,21 @@ public class GoodsService {
         }
         return goods;
     }
-
+    public com.dada.base.response.PageInfo<GoodsEntity> queryGoodsInfoLists(GoodsEntity goodsEntity, PageInfo pageInfo) throws BaseException {
+        List<GoodsEntity> goodsEntityList = null;
+        com.dada.base.response.PageInfo<GoodsEntity> entityPageInfo = new com.dada.base.response.PageInfo<GoodsEntity>();
+        try {
+            pageInfo = pageInfo == null ? new PageInfo() : pageInfo;
+            Page<GoodsEntity> page = startPage(pageInfo.getPageNum(), pageInfo.getPageSize());
+            goodsEntityList = goodsDao.selectBy(goodsEntity);
+            entityPageInfo.setList(goodsEntityList);
+            entityPageInfo.setTotal(page.getTotal());
+        } catch (Exception e) {
+            LOGGER.error("queryGoodsInfoList errror: ", e);
+            throw new BaseException(ErrorCode.DATABASE_ERROR);
+        }
+        return entityPageInfo;
+    }
     public PageInfo<GoodsEntity> queryGoodsInfoList(GoodsEntity goodsEntity, PageInfo pageInfo) throws BaseException {
         List<GoodsEntity> goodsEntityList = null;
         PageInfo<GoodsEntity> entityPageInfo = new PageInfo<GoodsEntity>(pageInfo.getPageNum(), pageInfo.getPageSize());
@@ -72,6 +87,25 @@ public class GoodsService {
             throw new BaseException(ErrorCode.DATABASE_ERROR);
         }
         return entityPageInfo;
+    }
+
+    public List<String> queryGoodsNameList() throws BaseException {
+        List<String> goodsNameList = new ArrayList<>();
+        try {
+            goodsNameList = goodsDao.selectGoodsNameList();
+        } catch (Exception e) {
+            LOGGER.error("queryGoodsNameList errror: ", e);
+            throw new BaseException(ErrorCode.DATABASE_ERROR);        }
+        return goodsNameList;
+    }
+    public List<String> queryGoodsSkuList() throws BaseException {
+        List<String> goodsSkuList = new ArrayList<>();
+        try {
+            goodsSkuList = goodsDao.selectGoodsSkuList();
+        } catch (Exception e) {
+            LOGGER.error("queryGoodsNameList errror: ", e);
+            throw new BaseException(ErrorCode.DATABASE_ERROR);        }
+        return goodsSkuList;
     }
 }
 

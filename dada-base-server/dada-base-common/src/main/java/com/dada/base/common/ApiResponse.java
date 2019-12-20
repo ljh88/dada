@@ -28,7 +28,7 @@ public class ApiResponse<T> {
         this.data = t;
     }
 
-    public ApiResponse(int code, String message) {
+    public ApiResponse(String code, String message) {
         this.code = code;
         this.msg = message;
     }
@@ -38,7 +38,7 @@ public class ApiResponse<T> {
      *
      * @return the code
      */
-    public int getCode() {
+    public String getCode() {
         return code;
     }
 
@@ -47,7 +47,7 @@ public class ApiResponse<T> {
      *
      * @param code 响应码
      */
-    public void setCode(int code) {
+    public void setCode(String code) {
         this.code = code;
     }
 
@@ -90,7 +90,7 @@ public class ApiResponse<T> {
     /**
      * 响应码.
      */
-    private int code = ApiConstants.API_SUCCESS;
+    private String code = ApiConstants.API_SUCCESS;
 
     /**
      * 响应描述.
@@ -126,7 +126,7 @@ public class ApiResponse<T> {
      * @param <T>
      * @return
      */
-    public static <T> String buildJson(int code, String message) {
+    public static <T> String buildJson(String code, String message) {
         return JSON.toJSONString(new ApiResponse<T>(code, message));
     }
 

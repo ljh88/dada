@@ -18,4 +18,10 @@
 	<dubbo:protocol name="dubbo" port="20881" />
 	<!-- 声明需要暴露的服务接口 -->
 	<dubbo:service interface="com.dada.base.api.GoodsFacade" ref="goodsFacadeImpl" timeout="300000"/>
+	<dubbo:service interface="com.dada.base.api.DemoFacade" ref="demoFacadeImpl" timeout="300000"/>
+
+	<!--
+        <dubbo:service interface="com.dada.base.api.StatisticsFacade" ref="statisticsFacadeImpl" timeout="300000"/>
+    -->
+
 </beans>

@@ -1,10 +1,7 @@
 package com.dada.base.facade;
 
 import com.dada.base.api.GoodsFacade;
-import com.dada.base.common.DataResponse;
-import com.dada.base.common.MessageResponse;
-import com.dada.base.common.PageInfo;
-import com.dada.base.common.PageInfoResponse;
+import com.dada.base.common.*;
 import com.dada.base.exception.BaseException;
 import com.dada.base.exception.ValidateException;
 import com.dada.base.service.GoodsEntity;
@@ -17,7 +14,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -44,11 +40,11 @@ public class GoodsFacadeImpl implements GoodsFacade {
             validator.isEmpty(goodsEntity);
             LOGGER.info("addGoodsInfo 请求，request: ", goodsEntity);
             goodsService.addGoodsInfo(goodsEntity);
-        }catch(ValidateException e){
+        } catch (ValidateException e) {
             LOGGER.error("#addGoodsInfo 异常, e: ", e);
             response.setResponseCode(e.getCode());
             response.setResponseDesc(e.getDesc());
-        }catch(BaseException e) {
+        } catch (BaseException e) {
             LOGGER.error("#addGoodsInfo 异常, e: ", e);
             response.setResponseCode(e.getCode());
             response.setResponseDesc(e.getDesc());
@@ -63,11 +59,11 @@ public class GoodsFacadeImpl implements GoodsFacade {
             validator.isEmpty(goodsEntity);
             LOGGER.info("updateGoodsInfo 请求，request: ", goodsEntity);
             goodsService.updateGoodsInfo(goodsEntity);
-        }catch(ValidateException e){
+        } catch (ValidateException e) {
             LOGGER.error("#updateGoodsInfo 异常, e: ", e);
             response.setResponseCode(e.getCode());
             response.setResponseDesc(e.getDesc());
-        }catch(BaseException e) {
+        } catch (BaseException e) {
             LOGGER.error("#updateGoodsInfo 异常, e: ", e);
             response.setResponseCode(e.getCode());
             response.setResponseDesc(e.getDesc());
@@ -75,32 +71,65 @@ public class GoodsFacadeImpl implements GoodsFacade {
         return response;
     }
 
-    @Override
-    public PageInfoResponse<GoodsEntity> queryGoodsInfoList(GoodsEntity goodsEntity , PageInfo pageInfo) {
-        PageInfoResponse<GoodsEntity> response = new PageInfoResponse<GoodsEntity>();
-        try {
-            PageInfo<GoodsEntity> entityPageInfo = new PageInfo<GoodsEntity>(pageInfo.getPageNum(), pageInfo.getPageSize());
-            LOGGER.info("queryGoodsInfoList 请求，request: ", goodsEntity);
-            entityPageInfo = goodsService.queryGoodsInfoList(goodsEntity,pageInfo);
-            response.setPageInfo(entityPageInfo);
-        }catch(BaseException e) {
-            LOGGER.error("#queryGoodsInfoList 异常, e: ", e);
-            response.setResponseCode(e.getCode());
-            response.setResponseDesc(e.getDesc());
-        }
-        return response;
-    }
+
 
     @Override
     public DataResponse<GoodsEntity> queryGoodsInfo(GoodsEntity goodsEntity) {
         DataResponse<GoodsEntity> response = new DataResponse<GoodsEntity>();
         try {
-            GoodsEntity entity = new GoodsEntity();
             LOGGER.info("queryGoodsInfo 请求，request: ", goodsEntity);
-            entity = goodsService.queryGoodsInfo(goodsEntity);
+            GoodsEntity entity = goodsService.queryGoodsInfo(goodsEntity);
             response.setData(entity);
-        }catch(BaseException e) {
+        } catch (BaseException e) {
             LOGGER.error("#queryGoodsInfo 异常, e: ", e);
+            response.setResponseCode(e.getCode());
+            response.setResponseDesc(e.getDesc());
+        }
+        return response;
+    }
+
+
+    @Override
+    public PageInfoResponse<GoodsEntity> queryGoodsInfoList(GoodsEntity goodsEntity, PageInfo pageInfo) {
+        PageInfoResponse<GoodsEntity> response = new PageInfoResponse<GoodsEntity>();
+        try {
+            LOGGER.info("queryGoodsInfoList 请求，request: ", goodsEntity);
+            PageInfo<GoodsEntity> entityPageInfo = goodsService.queryGoodsInfoList(goodsEntity, pageInfo);
+            response.setPageInfo(entityPageInfo);
+        } catch (Exception e) {
+            LOGGER.error("#queryGoodsInfoList 异常, e: ", e);
+            response = PageInfoResponse.newPageInfoResponse(ApiConstants.SYSTEM_ERROR+"",ApiConstants.SYSTEM_ERROR_MSG);
+        }
+        return response;
+    }
+
+
+    @Override
+    public PageInfoResponse<String> queryGoodsName() {
+        PageInfoResponse<String> response = new PageInfoResponse<>();
+        PageInfo<String> pageInfo = new PageInfo<>();
+        try {
+            List<String> goodsNameList = goodsService.queryGoodsNameList();
+            pageInfo.setList(goodsNameList);
+            response.setPageInfo(pageInfo);
+        } catch (BaseException e) {
+            LOGGER.error("#queryGoodsName 异常, e: ", e);
+            response.setCode(e.getCode());
+            response.setResponseDesc(e.getDesc());
+        }
+        return response;
+    }
+
+    @Override
+    public PageInfoResponse<String> queryGoodsSku() {
+        PageInfoResponse<String> response = new PageInfoResponse<>();
+        PageInfo<String> pageInfo = new PageInfo<>();
+        try {
+            List<String> goodsSkuList = goodsService.queryGoodsSkuList();
+            pageInfo.setList(goodsSkuList);
+            response.setPageInfo(pageInfo);
+        } catch (BaseException e) {
+            LOGGER.error("#queryGoodsSku 异常, e: ", e);
             response.setResponseCode(e.getCode());
             response.setResponseDesc(e.getDesc());
         }
