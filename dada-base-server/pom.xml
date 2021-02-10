@@ -42,7 +42,7 @@
         <!--freemarker-->
         <freemarker.version>2.3.23</freemarker.version>
         <!-- quartz任务调度框架 -->
-        <quartz.version>2.2.2</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <!-- Redis客户端 -->
         <jedis.version>2.7.2</jedis.version>
         <!-- solr客户端 -->
