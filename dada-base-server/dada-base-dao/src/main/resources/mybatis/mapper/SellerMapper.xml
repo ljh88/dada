@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.dada.base.dao.SellerDao">
-  <resultMap id="BaseResultMap" type="com.dada.base.com.dada.base.entity.SellerEntity">
+<mapper namespace="com.dada.base.mapper.SellerMapper">
+  <resultMap id="BaseResultMap" type="com.dada.base.com.dada.base.model.Seller">
     <id column="seller_id" jdbcType="VARCHAR" property="sellerId" />
     <result column="seller_name" jdbcType="VARCHAR" property="sellerName" />
     <result column="password" jdbcType="VARCHAR" property="password" />
@@ -15,7 +15,7 @@
     seller_id, seller_name, `password`, email, mobile, `status`, address_detail, logo_pic
   </sql>
 
-  <insert id="insert" parameterType="com.dada.base.com.dada.base.entity.SellerEntity">
+  <insert id="insert" parameterType="com.dada.base.com.dada.base.model.Seller">
     insert into seller (seller_id, seller_name, `password`,
       email, mobile, `status`,
       address_detail, logo_pic)
@@ -24,7 +24,7 @@
       #{addressDetail,jdbcType=VARCHAR}, #{logoPic,jdbcType=VARCHAR})
   </insert>
 
-  <update id="update" parameterType="com.dada.base.com.dada.base.entity.SellerEntity">
+  <update id="update" parameterType="com.dada.base.com.dada.base.model.Seller">
     update seller
     <set>
       <if test="sellerName != null">
@@ -52,14 +52,14 @@
     where seller_id = #{sellerId,jdbcType=VARCHAR}
   </update>
 
-  <select id="selectBy" parameterType="com.dada.base.com.dada.base.entity.SellerEntity" resultMap="BaseResultMap">
+  <select id="selectBy" parameterType="com.dada.base.com.dada.base.model.Seller" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from seller
     where seller_id = #{sellerId,jdbcType=VARCHAR}
   </select>
 
-  <select id="selectEntity" parameterType="com.dada.base.com.dada.base.entity.SellerEntity" resultMap="BaseResultMap">
+  <select id="selectEntity" parameterType="com.dada.base.com.dada.base.model.Seller" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
     from seller

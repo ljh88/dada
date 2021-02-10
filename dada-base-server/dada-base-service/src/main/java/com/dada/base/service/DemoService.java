@@ -1,6 +1,6 @@
 package com.dada.base.service;
 
-import com.dada.base.dao.GoodsDao;
+import com.dada.base.mapper.GoodsMapper;
 import com.dada.base.dto.GoodsDto;
 import com.dada.base.enums.ErrorCode;
 import com.dada.base.exception.BaseException;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.github.pagehelper.PageHelper.startPage;
@@ -28,7 +27,7 @@ public class DemoService {
     private static Logger LOGGER = LoggerFactory.getLogger(DemoService.class);
 
     @Autowired
-    private GoodsDao goodsDao;
+    private GoodsMapper goodsMapper;
 
 
     public PageInfo<GoodsDto> queryGoodsInfoLists(GoodsDto goodsDto, Page page) throws BaseException {
@@ -36,7 +35,7 @@ public class DemoService {
         try {
             page = page == null ? new Page(10,1) : page;
             Page<GoodsDto> pageInfo = startPage(page.getPageNum(), page.getPageSize());
-            List<GoodsDto> goodsEntityList = goodsDao.selectGoodsList(goodsDto);
+            List<GoodsDto> goodsEntityList = goodsMapper.selectGoodsList(goodsDto);
             entityPageInfo.setList(goodsEntityList);
             entityPageInfo.setTotal(pageInfo.getTotal());
             return entityPageInfo;
@@ -47,7 +46,7 @@ public class DemoService {
     }
     public GoodsDto queryGoodsInfo(GoodsDto goodsDto) throws BaseException {
         try {
-            GoodsDto goods = goodsDao.selectGoods(goodsDto);
+            GoodsDto goods = goodsMapper.selectGoods(goodsDto);
             return goods;
         } catch (Exception e) {
             LOGGER.error("queryGoodsInfo errror: ", e);

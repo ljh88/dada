@@ -1,4 +1,4 @@
-package com.dada.base.entity;
+package com.dada.base.model;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -7,7 +7,7 @@ import java.util.Date;
  * 商品实体类
  * @author lijinghua on 2019/9/9
  */
-public class GoodsEntity implements Serializable {
+public class Goods implements Serializable {
     private Integer id;
 
     /**

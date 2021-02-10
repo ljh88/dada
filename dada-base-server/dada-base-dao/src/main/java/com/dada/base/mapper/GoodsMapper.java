@@ -1,14 +1,14 @@
-package com.dada.base.dao;
+package com.dada.base.mapper;
 
 import com.dada.base.dto.GoodsDto;
-import com.dada.base.service.GoodsEntity;
+import com.dada.base.model.Goods;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 
 @Repository
-public interface GoodsDao extends BaseDao<Integer, GoodsEntity> {
+public interface GoodsMapper extends BaseDao<Integer, Goods> {
 
     List<String> selectGoodsNameList();
 

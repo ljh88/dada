@@ -1,7 +1,7 @@
 package com.dada.base.api;
 
+import com.dada.base.common.DataResponse;
 import com.dada.base.dto.GoodsDto;
-import com.dada.base.response.DataResponse;
 import com.dada.base.response.PageInfo;
 import com.github.pagehelper.Page;
 

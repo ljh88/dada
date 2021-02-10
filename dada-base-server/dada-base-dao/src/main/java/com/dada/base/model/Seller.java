@@ -1,4 +1,4 @@
-package com.dada.base.entity;
+package com.dada.base.model;
 
 import java.io.Serializable;
 
@@ -6,7 +6,7 @@ import java.io.Serializable;
  * 商家实体类
  * @author lijinghua on 2019/9/9
  */
-public class SellerEntity implements Serializable {
+public class Seller implements Serializable {
     /**
      * 商家ID
      */

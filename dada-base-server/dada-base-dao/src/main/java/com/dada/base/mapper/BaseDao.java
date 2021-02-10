@@ -1,4 +1,4 @@
-package com.dada.base.dao;
+package com.dada.base.mapper;
 
 import java.io.Serializable;
 import java.util.List;

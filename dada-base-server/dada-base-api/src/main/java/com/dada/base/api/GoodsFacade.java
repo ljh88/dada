@@ -4,7 +4,7 @@ import com.dada.base.common.DataResponse;
 import com.dada.base.common.MessageResponse;
 import com.dada.base.common.PageInfo;
 import com.dada.base.common.PageInfoResponse;
-import com.dada.base.service.GoodsEntity;
+import com.dada.base.dto.GoodsDto;
 
 /**
  * @Description：商品接口
@@ -15,29 +15,29 @@ public interface GoodsFacade {
 
     /**
      * 新增商品信息
-     * @param goodsEntity
+     * @param goods
      * @return
      */
-    MessageResponse addGoodsInfo(GoodsEntity goodsEntity);
+    MessageResponse addGoodsInfo(GoodsDto goods);
 
     /**
      * 更新商品信息
-     * @param goodsEntity
+     * @param goods
      * @return
      */
-    MessageResponse updateGoodsInfo(GoodsEntity goodsEntity);
+    MessageResponse updateGoodsInfo(GoodsDto goods);
 
     /**
      * 查询商品信息分页
-     * @param goodsEntity
+     * @param goods
      * @return
      */
-    PageInfoResponse<GoodsEntity> queryGoodsInfoList(GoodsEntity goodsEntity, PageInfo pageInfo);
+    PageInfoResponse<GoodsDto> queryGoodsInfoList(GoodsDto goods, PageInfo pageInfo);
 
     /**
      * 查询商品信息
-     * @param goodsEntity
+     * @param goods
      * @return
      */
-    DataResponse<GoodsEntity> queryGoodsInfo(GoodsEntity goodsEntity);
+    DataResponse<GoodsDto> queryGoodsInfo(GoodsDto goods);
 }
