@@ -48,7 +48,7 @@
         <!-- solr客户端 -->
         <solrj.version>4.10.3</solrj.version>
         <!-- httpclient -->
-        <httpclient.version>4.3.6</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
 
         <!--日志-->
         <slf4j.version>1.6.4</slf4j.version>
